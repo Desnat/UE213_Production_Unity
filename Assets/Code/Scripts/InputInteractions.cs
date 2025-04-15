@@ -16,7 +16,7 @@ public class InputInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Left()
@@ -36,13 +36,13 @@ public class InputInteractions : MonoBehaviour
 
     public void Down()
     {
-        if(haveDive == false)
+        if (haveDive == false)
         {
-        PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
-        float tempHeightOffset = pathFollower.heightOffset - pathFollower.widthOffset;
-        pathFollower.heightOffset = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
-        haveDive = true;
-        Invoke("Up",2);
+            PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
+            float tempHeightOffset = pathFollower.heightOffset - pathFollower.widthOffset;
+            pathFollower.heightOffset = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
+            haveDive = true;
+            Invoke("Up", 2);
         }
         else
         {
