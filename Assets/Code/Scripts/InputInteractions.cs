@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputInteractions : MonoBehaviour
 {
     public GameObject vehicle;
+    private bool haveDive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,10 +36,18 @@ public class InputInteractions : MonoBehaviour
 
     public void Down()
     {
+        if(haveDive == false)
+        {
         PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
         float tempHeightOffset = pathFollower.heightOffset - pathFollower.widthOffset;
         pathFollower.heightOffset = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
+        haveDive = true;
         Invoke("Up",2);
+        }
+        else
+        {
+            return;
+        }
 
     }
 
@@ -47,5 +56,6 @@ public class InputInteractions : MonoBehaviour
         PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
         float tempHeightOffset = pathFollower.heightOffset + pathFollower.widthOffset;
         pathFollower.heightOffset = Mathf.Min(tempHeightOffset, pathFollower.widthOffset);
+        haveDive = false;
     }
 }
