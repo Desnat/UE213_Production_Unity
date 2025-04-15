@@ -5,7 +5,7 @@ public class ObstaclesInteraction : MonoBehaviour
 {
     public GameObject vehicle;
     public Collider selfCollider;
-    public float CurrentScore = 0;
+    float CurrentScore = 0;
     public float ScoreValue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,9 +21,10 @@ public class ObstaclesInteraction : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         float Score = CurrentScore;
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Obstacles"))
         {
             Score = CurrentScore + ScoreValue;
+            Debug.Log(Score);
         }
     }
 

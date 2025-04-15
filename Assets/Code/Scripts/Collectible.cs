@@ -7,6 +7,8 @@ public class Collectible : MonoBehaviour
     public float heightOffset;
     public Int32 beat;
     public float offset;
+    public int CurrentScore;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,7 @@ public class Collectible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
 #if UNITY_EDITOR
@@ -40,14 +43,29 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
+            UpdatesScore(1);
+
+            
             Destroy(gameObject);
         }
+    }
+
+    private void UpdatesScore(int ScoreValue)
+    {
+        CurrentScore = CurrentScore + ScoreValue;
+        int Score = CurrentScore;
+        Debug.Log("Score " + Score);
+        Debug.Log("Current Score " + CurrentScore);
     }
 }
 
 
-public enum CollectibleType { 
+public enum CollectibleType
+{
     Cube
 };
+
+
