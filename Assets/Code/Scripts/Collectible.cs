@@ -8,6 +8,8 @@ public class Collectible : MonoBehaviour
     public Int32 beat;
     public float offset;
     public int CurrentScore;
+    public int CurrentLife = 3;
+    public int MaxLife = 3;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -40,17 +42,15 @@ public class Collectible : MonoBehaviour
         }
     }
 #endif
-
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
             UpdatesScore(1);
-
-            
             Destroy(gameObject);
         }
+        
     }
 
     private void UpdatesScore(int ScoreValue)

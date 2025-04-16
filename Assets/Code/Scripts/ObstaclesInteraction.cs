@@ -21,10 +21,11 @@ public class ObstaclesInteraction : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacles"))
+        if (other.CompareTag("Collectible"))
         {
             CurrentLife--;
-            if (CurrentLife >= 0)
+            Debug.Log("Nombre de vie restante: " + CurrentLife);
+            if (CurrentLife <= 0)
             {
                 Application.Quit();
             }
@@ -33,6 +34,7 @@ public class ObstaclesInteraction : MonoBehaviour
         if (other.CompareTag("Shield"))
         {
             CurrentLife++;
+            Debug.Log("Nombre de vie restante: " + CurrentLife);
         }
     }
 
