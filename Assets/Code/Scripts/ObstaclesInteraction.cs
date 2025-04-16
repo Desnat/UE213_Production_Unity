@@ -9,7 +9,9 @@ public class ObstaclesInteraction : MonoBehaviour
     public int MaxLife = 3;
     public int CurrentScore = 0;
     public int ScoreValue;
-    int Score;
+    public int Score;
+    public UiModificator uiModificator;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +22,7 @@ public class ObstaclesInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        uiModificator.ChangeText(Score,CurrentLife);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -46,7 +48,4 @@ public class ObstaclesInteraction : MonoBehaviour
             Debug.Log("Score actuel: " + Score);
         }
     }
-
-
-
 }
