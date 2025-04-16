@@ -14,8 +14,8 @@ public class ObstaclesInteraction : MonoBehaviour
     public int ScoreValue;
     public int Multiplicateur;
     public Int32 MultiplicateurTime;
-     int CurrentScore = 0;
-     int Score;
+    int CurrentScore = 0;
+    int Score;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,16 +35,18 @@ public class ObstaclesInteraction : MonoBehaviour
         {
             CurrentLife--;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
+            DestroyActor(other);
             if (CurrentLife <= 0)
             {
                 Application.Quit();
             }
         }
 
-        if (other.CompareTag("Shield"))
+        if(other.CompareTag("Shield"))
         {
             CurrentLife++;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
+            DestroyActor(other);
         }
         if(other.CompareTag("Collectible"))
         {
@@ -58,6 +60,7 @@ public class ObstaclesInteraction : MonoBehaviour
             ScoreValue = ScoreValue * Multiplicateur;
             Debug.Log("Score multiplié par "+ Multiplicateur);
             Invoke("NoMultiplicator", MultiplicateurTime);
+            DestroyActor(other);
         }
 
     }
@@ -65,5 +68,10 @@ public class ObstaclesInteraction : MonoBehaviour
     {
         ScoreValue = ScoreValue/Multiplicateur;
         Debug.Log("Score divisé par "+ Multiplicateur);
+    }
+    
+    public void DestroyActor(Collider other) 
+    {
+        Destroy(other.gameObject);
     }
 }
