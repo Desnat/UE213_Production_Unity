@@ -3,15 +3,19 @@ using System;
 
 public class ObstaclesInteraction : MonoBehaviour
 {
+    [Header("References")]
     public GameObject vehicle;
     public Collider selfCollider;
-    public int CurrentLife = 3;
-    public int MaxLife = 3;
-    public int CurrentScore = 0;
-    public int ScoreValue;
-    public int Score;
     public UiModificator uiModificator;
+    [Header("Life Value")]
+    public int MaxLife = 3;
+    int CurrentLife = 3;
+    [Header("Score Value")]
+    public int ScoreValue;
     public int Multiplicateur;
+    public Int32 MultiplicateurTime;
+     int CurrentScore = 0;
+     int Score;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,7 +57,7 @@ public class ObstaclesInteraction : MonoBehaviour
         {
             ScoreValue = ScoreValue * Multiplicateur;
             Debug.Log("Score multiplié par "+ Multiplicateur);
-            Invoke("NoMultiplicator", 10);
+            Invoke("NoMultiplicator", MultiplicateurTime);
         }
 
     }
