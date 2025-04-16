@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Collectible
   - Obstacles
-  - Shield
   - Multiplicateur
+  - Shield
   layers:
   - Default
   - TransparentFX
