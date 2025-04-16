@@ -11,6 +11,7 @@ public class ObstaclesInteraction : MonoBehaviour
     public int ScoreValue;
     public int Score;
     public UiModificator uiModificator;
+    public int Multiplicateur;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,5 +48,18 @@ public class ObstaclesInteraction : MonoBehaviour
             Score = CurrentScore;
             Debug.Log("Score actuel: " + Score);
         }
+
+        if(other.CompareTag("Multiplicateur"))
+        {
+            ScoreValue = ScoreValue * Multiplicateur;
+            Debug.Log("Score multiplié par "+ Multiplicateur);
+            Invoke("NoMultiplicator", 10);
+        }
+
+    }
+    public void NoMultiplicator()
+    {
+        ScoreValue = ScoreValue/Multiplicateur;
+        Debug.Log("Score divisé par "+ Multiplicateur);
     }
 }
