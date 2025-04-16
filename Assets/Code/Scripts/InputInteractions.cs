@@ -39,8 +39,8 @@ public class InputInteractions : MonoBehaviour
         if (haveDive == false)
         {
             PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
-            float tempHeightOffset = pathFollower.heightOffset - pathFollower.widthOffset;
-            pathFollower.heightOffset = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
+            float tempHeightOffset = pathFollower.heightOffsetAnimation - pathFollower.widthOffset;
+            pathFollower.heightOffsetAnimation = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
             haveDive = true;
             Invoke("Up", 2);
         }
@@ -54,8 +54,8 @@ public class InputInteractions : MonoBehaviour
     public void Up()
     {
         PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
-        float tempHeightOffset = pathFollower.heightOffset + pathFollower.widthOffset;
-        pathFollower.heightOffset = Mathf.Min(tempHeightOffset, pathFollower.widthOffset);
+        float tempHeightOffset = pathFollower.heightOffsetAnimation + pathFollower.widthOffset;
+        pathFollower.heightOffsetAnimation = Mathf.Min(tempHeightOffset, pathFollower.widthOffset);
         haveDive = false;
     }
 }

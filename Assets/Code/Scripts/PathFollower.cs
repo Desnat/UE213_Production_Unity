@@ -18,10 +18,12 @@ namespace PathCreation.Examples
         public Vector3 vehiculeRotation;
         public bool startFromEnd = false;
         public float offset { get; set; }
+        public float heightOffsetAnimation { get; set; }
         public float timeToTravel { get; set; }
 
         private float distanceTravelled;
         private float currentOffset;
+        private float currentHeightOffset;
         private InputSystem_Actions controls;
 
         public void OnEnable()
@@ -62,6 +64,7 @@ namespace PathCreation.Examples
         void Start()
         {
             currentOffset = offset;
+            currentHeightOffset = heightOffsetAnimation;
             distanceTravelled = 0f;
             if (pathCreator != null)
             {
@@ -89,8 +92,9 @@ namespace PathCreation.Examples
                 }
 
                 currentOffset = Mathf.MoveTowards(currentOffset, offset, Time.deltaTime * offsetSpeed);
+                currentHeightOffset = Mathf.MoveTowards(currentHeightOffset, heightOffsetAnimation, Time.deltaTime * offsetSpeed);
 
-                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction) + (transform.right * currentOffset) + (transform.up * heightOffset);
+                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction) + (transform.right * currentOffset) + (transform.up * heightOffset) +(transform.up * currentHeightOffset);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(vehiculeRotation.x, vehiculeRotation.y, vehiculeRotation.z);
 
             }
