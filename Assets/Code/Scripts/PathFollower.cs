@@ -26,6 +26,8 @@ namespace PathCreation.Examples
         private float currentHeightOffset;
         private InputSystem_Actions controls;
 
+        public Animator animator;
+
         public void OnEnable()
         {
             if (controls == null)
@@ -96,6 +98,7 @@ namespace PathCreation.Examples
 
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction) + (transform.right * currentOffset) + (transform.up * heightOffset) +(transform.up * currentHeightOffset);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(vehiculeRotation.x, vehiculeRotation.y, vehiculeRotation.z);
+                
 
             }
         }
