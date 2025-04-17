@@ -7,11 +7,13 @@ public class InputInteractions : MonoBehaviour
     public GameObject vehicle;
     private bool haveDive = false;
     public Animator animator;
+    
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        transform.position = new Vector3(100, 100, 0);
+        //transform.position = new Vector3(100, 100, 0);
     }
 
     // Update is called once per frame
@@ -39,12 +41,12 @@ public class InputInteractions : MonoBehaviour
     {
         if (haveDive == false)
         {
+            animator.SetBool("haveDive",true);
             PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
             float tempHeightOffset = pathFollower.heightOffsetAnimation - pathFollower.widthOffset;
             pathFollower.heightOffsetAnimation = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
             haveDive = true;
             Invoke("Up", 2.2f);
-            animator.SetBool("haveDive",true);
         }
         else
         {
@@ -55,10 +57,10 @@ public class InputInteractions : MonoBehaviour
 
     public void Up()
     {
+        animator.SetBool("haveDive",false);
         PathFollower pathFollower = vehicle.GetComponent<PathFollower>();
         float tempHeightOffset = pathFollower.heightOffsetAnimation + pathFollower.widthOffset;
         pathFollower.heightOffsetAnimation = Mathf.Min(tempHeightOffset, pathFollower.widthOffset);
         haveDive = false;
-        animator.SetBool("haveDive",false);
     }
 }
