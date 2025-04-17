@@ -8,14 +8,17 @@ public class ObstaclesInteraction : MonoBehaviour
     public Collider selfCollider;
     public UiModificator uiModificator;
     [Header("Life Value")]
-    public int MaxLife = 3;
-    int CurrentLife = 3;
+    public int MaxLife = 4;
+    [NonSerialized]
+    public int CurrentLife = 3;
+
     [Header("Score Value")]
     public int ScoreValue;
     public int Multiplicateur;
     public Int32 MultiplicateurTime;
     int CurrentScore = 0;
-    int Score;
+    [NonSerialized]
+    public int Score;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +48,7 @@ public class ObstaclesInteraction : MonoBehaviour
         if(other.CompareTag("Shield"))
         {
             CurrentLife++;
+            if(CurrentLife >= MaxLife) CurrentLife = MaxLife;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
             DestroyActor(other);
         }
