@@ -6,6 +6,7 @@ public class InputInteractions : MonoBehaviour
 {
     public GameObject vehicle;
     private bool haveDive = false;
+    public Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,7 +43,8 @@ public class InputInteractions : MonoBehaviour
             float tempHeightOffset = pathFollower.heightOffsetAnimation - pathFollower.widthOffset;
             pathFollower.heightOffsetAnimation = Mathf.Max(tempHeightOffset, -pathFollower.widthOffset);
             haveDive = true;
-            Invoke("Up", 2);
+            Invoke("Up", 2.2f);
+            animator.SetBool("haveDive",true);
         }
         else
         {
@@ -57,5 +59,6 @@ public class InputInteractions : MonoBehaviour
         float tempHeightOffset = pathFollower.heightOffsetAnimation + pathFollower.widthOffset;
         pathFollower.heightOffsetAnimation = Mathf.Min(tempHeightOffset, pathFollower.widthOffset);
         haveDive = false;
+        animator.SetBool("haveDive",false);
     }
 }
