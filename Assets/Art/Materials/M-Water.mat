@@ -39,26 +39,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamDensity: 3
-    - _FoamThickness: 2
+    - _FoamDensity: 60
+    - _FoamThickness: 20
     - _FormCutOff: 1
     - _FormScale: 100
-    - _FormSpeed: 1
+    - _FormSpeed: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaveHeight: 0.0002
-    - _WaveSpeed: 3
+    - _WaveSpeed: 0.5
     - _formAmount: 1
     - _refractionStrength: 0
     - _refractionscale: 1
     - _refractionspeed: 0.5
     - _waterDepth: 10
     m_Colors:
-    - _Color2: {r: 0, g: 0.25, b: 0.09191179, a: 0}
-    - _Color_clair: {r: 0.2875134, g: 0.8584906, b: 0.4761335, a: 0}
+    - _Color2: {r: 0.03457636, g: 0.1981132, b: 0.093347415, a: 0}
+    - _Color_clair: {r: 0.09549664, g: 0.6981132, b: 0.29361713, a: 0}
     - _DeepWater: {r: 0.04004984, g: 0.1886792, b: 0.05458066, a: 0}
-    - _FlowDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _Formcolor: {r: 0.30798632, g: 0.5471698, b: 0.22970808, a: 1}
+    - _FlowDirection: {r: -1, g: 1, b: 0, a: 0}
+    - _Formcolor: {r: 0.36390796, g: 0.5377358, b: 0.30691525, a: 1}
     - _ShallowWater: {r: 0.1514329, g: 0.3867925, b: 0.2293021, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
