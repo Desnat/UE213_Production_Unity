@@ -23,7 +23,7 @@ public class UiModificator : MonoBehaviour
 
     public void ChangeText(int Score, int CurrentLife)
     {
-        ScoreText.text = "Score : " + Score ;
+        ScoreText.text = "" + Score ;
         VieText.text = "Vie : " + CurrentLife;
     }
 }
