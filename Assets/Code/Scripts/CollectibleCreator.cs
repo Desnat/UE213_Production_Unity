@@ -56,6 +56,9 @@ public class CollectibleCreator : MonoBehaviour
                     scale = collectible.transform.localScale
                 };
 
+
+                Debug.Log(collectible.transorm.localScale);
+
                 saveObject.collectibles.Add(item);
             }
         }
@@ -147,6 +150,7 @@ public class CollectibleCreator : MonoBehaviour
             {
                 GameObject collectible = Instantiate(collectibleBase, spawnPosition, spawnRotation);
                 collectible.transform.localScale = collectibleData.scale;
+                Debug.Log(collectibleData.scale);
                 collectible.transform.position = pathCreator.path.GetPointAtDistance(distance, vehicleData.endOfPathInstruction) + (collectible.transform.right * collectibleData.offset) + (collectible.transform.up * collectibleData.heightOffset);
                 collectible.transform.parent = transform;
 
@@ -167,23 +171,27 @@ public class CollectibleCreator : MonoBehaviour
     public void GenerateRandomPath()
     {
         PathFollower currentVehicle = vehicle.GetComponent<PathFollower>();
+        Debug.Log("test5");
         if (currentVehicle == null)
         {
             return;
         }
 
+        Debug.Log("test4");
         BeatAnalyzer beatAnalyzer = GetComponent<BeatAnalyzer>();
         if (beatAnalyzer == null)
         {
             return;
         }
 
+        Debug.Log("test3");
         Collectible collectible = prefab.GetComponent<Collectible>();
         if (collectible == null)
         {
             return;
         }
 
+        Debug.Log("test2");
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
@@ -215,7 +223,7 @@ public class CollectibleCreator : MonoBehaviour
                 Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distance, currentVehicle.endOfPathInstruction) * Quaternion.Euler(0, 0, 90);
 
                 GameObject cube = Instantiate(prefab, spawnPosition, spawnRotation);
-                cube.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                cube.transform.localScale = prefab.transform.localScale;
                 cube.transform.position = pathCreator.path.GetPointAtDistance(distance, currentVehicle.endOfPathInstruction) + (cube.transform.right * spawnOffset) + (cube.transform.up * collectible.heightOffset);
                 cube.transform.parent = transform;
 
