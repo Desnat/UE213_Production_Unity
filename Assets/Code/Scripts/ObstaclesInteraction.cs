@@ -17,6 +17,7 @@ public class ObstaclesInteraction : MonoBehaviour
     public int MaxLife = 3;
     [NonSerialized]
     public int CurrentLife = 3;
+    public GameObject Shield;
 
     [Header("Score Value")]
     public int ScoreValue;
@@ -47,7 +48,14 @@ public class ObstaclesInteraction : MonoBehaviour
             CurrentLife--;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
             DestroyActor(other);
-            UpdateHealthUI();
+            if(Shield == true)
+            {
+                Shield.SetActive(false);
+            }
+            else
+            {
+                UpdateHealthUI();
+            }
             if (CurrentLife <= 0)
             {
                 Application.Quit();
@@ -57,7 +65,7 @@ public class ObstaclesInteraction : MonoBehaviour
         if(other.CompareTag("Shield"))
         {
             CurrentLife++;
-            if(CurrentLife >= MaxLife) CurrentLife = MaxLife;
+            Shield.SetActive(true);
             Debug.Log("Nombre de vie restante: " + CurrentLife);
             DestroyActor(other);
         }
