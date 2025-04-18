@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+
 
 public class ObstaclesInteraction : MonoBehaviour
 {
@@ -8,7 +10,11 @@ public class ObstaclesInteraction : MonoBehaviour
     public Collider selfCollider;
     public UiModificator uiModificator;
     [Header("Life Value")]
-    public int MaxLife = 4;
+    public Image[] heartImages;
+    public Sprite fullHeartSprite;
+    public Sprite emptyHeartSprite;
+
+    public int MaxLife = 3;
     [NonSerialized]
     public int CurrentLife = 3;
 
@@ -16,6 +22,8 @@ public class ObstaclesInteraction : MonoBehaviour
     public int ScoreValue;
     public int Multiplicateur;
     public Int32 MultiplicateurTime;
+
+    public GameObject Multi;
     int CurrentScore = 0;
     [NonSerialized]
     public int Score;
@@ -24,7 +32,7 @@ public class ObstaclesInteraction : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        UpdateHealthUI();
     }
 
     // Update is called once per frame
@@ -39,6 +47,7 @@ public class ObstaclesInteraction : MonoBehaviour
             CurrentLife--;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
             DestroyActor(other);
+            UpdateHealthUI();
             if (CurrentLife <= 0)
             {
                 Application.Quit();
@@ -64,6 +73,7 @@ public class ObstaclesInteraction : MonoBehaviour
             ScoreValue = ScoreValue * Multiplicateur;
             Debug.Log("Score multiplié par "+ Multiplicateur);
             Invoke("NoMultiplicator", MultiplicateurTime);
+            Multi.SetActive(true);
             DestroyActor(other);
         }
 
@@ -72,10 +82,26 @@ public class ObstaclesInteraction : MonoBehaviour
     {
         ScoreValue = ScoreValue/Multiplicateur;
         Debug.Log("Score divisé par "+ Multiplicateur);
+        Multi.SetActive(false);
     }
     
     public void DestroyActor(Collider other) 
     {
         Destroy(other.gameObject);
+    }
+    private void UpdateHealthUI()
+    {
+        // Boucle à travers chaque cœur pour afficher son état
+        for (int i = 0; i < MaxLife; i++)
+        {
+            if (i < CurrentLife)
+            {
+                heartImages[i].sprite = fullHeartSprite; // Cœur plein
+            }
+            else
+            {
+                heartImages[i].sprite = emptyHeartSprite; // Cœur assombri
+            }
+        }
     }
 }
