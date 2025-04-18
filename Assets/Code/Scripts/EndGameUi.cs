@@ -7,6 +7,7 @@ public class EndGameUi : MonoBehaviour
     public GameObject endScreenPanel;
     public TMP_Text finalScoreText;
     public TMP_Text remainingLivesText;
+
     
     
     
@@ -18,10 +19,10 @@ public class EndGameUi : MonoBehaviour
         Time.timeScale = 0f; 
     }
 
-    public void Replay()
+    public void Replay(string sceneName)
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(sceneName);
     }
     
 }
