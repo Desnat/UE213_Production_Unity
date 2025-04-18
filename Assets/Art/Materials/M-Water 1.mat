@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M-Water 1
-  m_Shader: {fileID: -6465566751694194690, guid: 9ebb4fee7d4d9d849b7b64816cdc0a83,
+  m_Shader: {fileID: -6465566751694194690, guid: d867ff41132e55e4bae7c06f753ba265,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
