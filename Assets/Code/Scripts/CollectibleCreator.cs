@@ -57,7 +57,7 @@ public class CollectibleCreator : MonoBehaviour
                 };
 
 
-                Debug.Log(collectible.transorm.localScale);
+                Debug.Log(collectible.transform.localScale);
 
                 saveObject.collectibles.Add(item);
             }
