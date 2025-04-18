@@ -31,6 +31,12 @@ public class ObstaclesInteraction : MonoBehaviour
     [NonSerialized]
     public int Score;
     bool ShielIsActivate = false;
+    public AudioClip audioObstacle;
+    public AudioClip audioPowerUp;
+    public AudioClip audioCollectible;
+    public AudioSource audioSource;
+    public float soundVolume = 1.0f;
+    
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +44,14 @@ public class ObstaclesInteraction : MonoBehaviour
     {
         UpdateHealthUI();
         CurrentLife = MaxLife;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // S'assure que le volume est pris en compte
+        audioSource.volume = soundVolume;
     }
 
     // Update is called once per frame
@@ -50,6 +64,11 @@ public class ObstaclesInteraction : MonoBehaviour
     {
         if (other.CompareTag("Obstacles"))
         {
+            
+            if (audioObstacle != null)
+            {
+                audioSource.PlayOneShot(audioObstacle,soundVolume);
+            }
             if(ShielIsActivate == true)
             {
                 Shield.SetActive(false);
@@ -70,6 +89,10 @@ public class ObstaclesInteraction : MonoBehaviour
 
         if(other.CompareTag("Shield"))
         {
+            if (audioPowerUp != null)
+            {
+                audioSource.PlayOneShot(audioPowerUp,soundVolume);
+            }
             Shield.SetActive(true);
             ShielIsActivate = true;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
@@ -77,6 +100,10 @@ public class ObstaclesInteraction : MonoBehaviour
         }
         if(other.CompareTag("Collectible"))
         {
+            if (audioCollectible != null)
+            {
+                audioSource.PlayOneShot(audioCollectible,soundVolume);
+            }
             CurrentScore = CurrentScore + ScoreValue;
             Score = CurrentScore;
             Debug.Log("Score actuel: " + Score);
@@ -84,6 +111,10 @@ public class ObstaclesInteraction : MonoBehaviour
 
         if(other.CompareTag("Multiplicateur"))
         {
+            if (audioPowerUp != null)
+            {
+                audioSource.PlayOneShot(audioPowerUp,soundVolume);
+            }
             ScoreValue = ScoreValue * Multiplicateur;
             Debug.Log("Score multiplié par "+ Multiplicateur);
             Invoke("NoMultiplicator", MultiplicateurTime);
