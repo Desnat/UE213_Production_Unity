@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 
 public class ObstaclesInteraction : MonoBehaviour
-{
+{   
+    public AudioClip soundToPlay;
+
     [Header("References")]
     public GameObject vehicle;
     public Collider selfCollider;
