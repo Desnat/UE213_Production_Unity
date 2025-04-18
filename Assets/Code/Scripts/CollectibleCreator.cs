@@ -135,7 +135,7 @@ public class CollectibleCreator : MonoBehaviour
         foreach (CollectibleData collectibleData in saveObject.collectibles)
         {
             float distance = baseDistance + secPerBeat * vehicleData.speed * collectibleData.beat;
-            Debug.Log(distance);
+            //Debug.Log(distance);
             // Spawn the collectible
             Vector3 spawnPosition = new Vector3();
             Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distance, vehicleData.endOfPathInstruction) * Quaternion.Euler(0, 0, 90);

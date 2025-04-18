@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UiModificator : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI VieText;
+    
     //ObstaclesInteraction obstaclesInteraction;
     
     
@@ -21,9 +21,9 @@ public class UiModificator : MonoBehaviour
         
     }
 
-    public void ChangeText(int Score, int CurrentLife)
+    public void ChangeText(int Score)
     {
         ScoreText.text = "" + Score ;
-        VieText.text = "Vie : " + CurrentLife;
+        
     }
 }

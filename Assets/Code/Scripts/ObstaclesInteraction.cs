@@ -14,7 +14,7 @@ public class ObstaclesInteraction : MonoBehaviour
     public Sprite fullHeartSprite;
     public Sprite emptyHeartSprite;
 
-    public int MaxLife = 3;
+    public int MaxLife = 3;   
     [NonSerialized]
     public int CurrentLife = 3;
     public GameObject Shield;
@@ -28,44 +28,48 @@ public class ObstaclesInteraction : MonoBehaviour
     int CurrentScore = 0;
     [NonSerialized]
     public int Score;
+    bool ShielIsActivate = false;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         UpdateHealthUI();
+        CurrentLife = MaxLife;
     }
 
     // Update is called once per frame
     void Update()
     {
-        uiModificator.ChangeText(Score,CurrentLife);
+        uiModificator.ChangeText(Score);
+        UpdateHealthUI();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Obstacles"))
         {
-            CurrentLife--;
-            Debug.Log("Nombre de vie restante: " + CurrentLife);
-            DestroyActor(other);
-            if(Shield == true)
+            if(ShielIsActivate == true)
             {
                 Shield.SetActive(false);
+                ShielIsActivate = false;
             }
             else
             {
+                CurrentLife--;
                 UpdateHealthUI();
             }
             if (CurrentLife <= 0)
             {
                 Application.Quit();
             }
+            Debug.Log("Nombre de vie restante: " + CurrentLife);
+            DestroyActor(other);
         }
 
         if(other.CompareTag("Shield"))
         {
-            CurrentLife++;
             Shield.SetActive(true);
+            ShielIsActivate = true;
             Debug.Log("Nombre de vie restante: " + CurrentLife);
             DestroyActor(other);
         }
